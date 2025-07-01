@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Hero from "../components/Hero";
+import Features from "../components/Features";
+import Categories from "../components/Categories";
+import ProductDisplay from "../components/ProductDisplay";
 
 const Home = () => {
+  const [category, setCategory] =useState('all')
   return (
-    <div>Home</div>
+    <>
+  <Hero/>
+  <Features/>
+  <Categories category={category} setCategory={setCategory}/>
+  <ProductDisplay category={category}/>
+    </>
   )
 }
 

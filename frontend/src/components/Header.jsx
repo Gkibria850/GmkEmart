@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import Navbar from './Navbar'
@@ -16,8 +16,14 @@ const Header = () => {
     const toggleMenu =() =>{
         setMenuOpened(!menuOpened)
     }
+    useEffect(()=>{
+        const scrollYpos = window.addEventListener("scroll", ()=>{
+            window.scrollY > 40 ? setHeader(true) : setHeader(false)
+        })
+        return() => window.removeEventListener("scroll",scrollYpos)
+    })
   return (
-   <heade className="fixed w-full mx-auto top-0 left-0 right-0 py-4 z-30 transition-all max-padd-container flexBetween">
+   <header className={`${header ? "!py-3 bg-white shadow-xl" : ""} fixed w-full mx-auto top-0 left-0 right-0 py-4 z-30 transition-all max-padd-container flexBetween`}>
     <Link to={'/'}>
        <img src={logo} alt='logo' height={177} width={177}/>
     </Link>
@@ -50,7 +56,7 @@ const Header = () => {
         }
     </div>
     </div>
-    </heade>
+    </header>
     // 1:02 houre
   )
 }
