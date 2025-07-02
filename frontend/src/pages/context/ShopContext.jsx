@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { all_products } from '../../assets/data';
 
 export const ShopContext = createContext(null);
@@ -17,9 +17,12 @@ const ShopContextProvider = (props) => {
             
                 setCartItems((prev)=>({...prev,[itemId]:prev[itemId] -1}))
 
-            
         };
-  const contextValue = { all_products}; // Add state and functions here
+
+        useEffect(()=>{
+          console.log(cartItems)
+        },[cartItems])
+  const contextValue = { all_products,cartItems,setCartItems,addToCart,removeFromCart}; // Add state and functions here
 
   return (
     <ShopContext.Provider value={contextValue}>
